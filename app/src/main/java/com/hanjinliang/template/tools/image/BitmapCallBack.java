@@ -1,4 +1,4 @@
-package com.hanjinliang.projecttemplate.tools.image;
+package com.hanjinliang.template.tools.image;
 
 import android.graphics.Bitmap;
 

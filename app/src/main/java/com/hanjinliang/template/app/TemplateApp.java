@@ -1,9 +1,9 @@
-package com.hanjinliang.projecttemplate.app;
+package com.hanjinliang.template.app;
 
 import android.app.Application;
 
-import com.hanjinliang.projecttemplate.tools.image.GlideLoader;
-import com.hanjinliang.projecttemplate.tools.image.MyImageLoader;
+import com.hanjinliang.template.tools.image.GlideLoader;
+import com.hanjinliang.template.tools.image.MyImageLoader;
 
 
 /**

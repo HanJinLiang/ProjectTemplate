@@ -1,4 +1,4 @@
-package com.hanjinliang.projecttemplate.tools.image;
+package com.hanjinliang.template.tools.image;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -8,21 +8,26 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.DrawableTypeRequest;
-import com.bumptech.glide.Glide;
+import com.blankj.utilcode.util.ImageUtils;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.hanjinliang.projecttemplate.app.TemplateApp;
+import com.hanjinliang.template.GlideApp;
+import com.hanjinliang.template.GlideRequest;
+import com.hanjinliang.template.GlideRequests;
+import com.hanjinliang.template.app.TemplateApp;
 
-import java.io.File;
+import java.security.MessageDigest;
 
 /**
  * Created by HanJinLiang on 2018-04-13.
@@ -32,63 +37,62 @@ import java.io.File;
 public class GlideLoader implements ILoaderStrategy {
     @Override
     public void loadImage(final LoaderOptions options) {
-        RequestManager requestManager=Glide.with(TemplateApp.getApp());
-
-        DrawableTypeRequest drawableTypeRequest=null;
+        GlideRequests glideRequests= GlideApp.with(TemplateApp.getApp());
+        GlideRequest<Drawable> glideRequest=null;
         if(options.drawableResId!=0){
-            drawableTypeRequest=requestManager.load(options.drawableResId);
+            glideRequest=glideRequests.load(options.drawableResId);
         }else if(!TextUtils.isEmpty(options.url)){
-            drawableTypeRequest=requestManager.load(options.url);
+            glideRequest=glideRequests.load(options.url);
         }else if(options.file!=null){
-            drawableTypeRequest=requestManager.load(options.file);
+            glideRequest=glideRequests.load(options.file);
         }else if(options.uri!=null){
-            drawableTypeRequest=requestManager.load(options.uri);
+            glideRequest=glideRequests.load(options.uri);
         }
         if(options.placeholderResId!=0){
-            drawableTypeRequest.placeholder(options.placeholderResId);
+            glideRequest.placeholder(options.placeholderResId);
         }else if(options.placeholder!=null){
-            drawableTypeRequest.placeholder(options.placeholder);
+            glideRequest.placeholder(options.placeholder);
         }
 
         if(options.errorResId!=0){
-            drawableTypeRequest.error(options.errorResId);
+            glideRequest.error(options.errorResId);
         }
         if(options.isCenterCrop){
-            drawableTypeRequest.centerCrop();
+            glideRequest.centerCrop();
         }
         if(options.isCenterInside){
-            drawableTypeRequest.fitCenter();
+            glideRequest.fitCenter();
         }
         if(options.skipLocalCache){
-            drawableTypeRequest.skipMemoryCache(options.skipLocalCache);
+            glideRequest.skipMemoryCache(options.skipLocalCache);
         }
 
         if(options.targetWidth!=0&&options.targetHeight!=0){
-            drawableTypeRequest.override(options.targetWidth,options.targetHeight);
+            glideRequest.override(options.targetWidth,options.targetHeight);
         }
 
         if(options.callBack!=null) {
-            drawableTypeRequest.asBitmap();
-            drawableTypeRequest.listener(new RequestListener() {
+            glideRequest.listener(new RequestListener<Drawable>() {
                 @Override
-                public boolean onException(Exception e, Object model, Target target, boolean isFirstResource) {
+                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                     options.callBack.onBitmapFailed(e);
                     return false;
                 }
 
                 @Override
-                public boolean onResourceReady(Object resource, Object model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
-                    options.callBack.onBitmapLoaded((Bitmap) resource);
+                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                    options.callBack.onBitmapLoaded(ImageUtils.drawable2Bitmap(resource));
                     return false;
                 }
             });
+
         }
         if(options.bitmapAngle!=0) {
-            drawableTypeRequest.transform(new GlideRoundTransform(TemplateApp.getApp(),options.bitmapAngle));
+            glideRequest.transform(new GlideRoundTransform(TemplateApp.getApp(),options.bitmapAngle));
         }
 
         if(options.targetView!=null){
-            drawableTypeRequest.into((ImageView) options.targetView);
+            glideRequest.into((ImageView) options.targetView);
         }
 
     }
@@ -130,8 +134,9 @@ public class GlideLoader implements ILoaderStrategy {
             return result;
         }
 
-        @Override public String getId() {
-            return getClass().getName() + Math.round(radius);
+        @Override
+        public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+
         }
     }
 
@@ -172,11 +177,11 @@ public class GlideLoader implements ILoaderStrategy {
             return result;
         }
 
-        @Override
-        public String getId() {
-            return getClass().getName();
-        }
 
+        @Override
+        public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
+
+        }
     }
 
 

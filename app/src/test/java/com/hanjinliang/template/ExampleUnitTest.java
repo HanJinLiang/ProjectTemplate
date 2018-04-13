@@ -1,4 +1,4 @@
-package com.hanjinliang.projecttemplate;
+package com.hanjinliang.template;
 
 import org.junit.Test;
 

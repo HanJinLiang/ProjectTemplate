@@ -1,4 +1,4 @@
-package com.hanjinliang.projecttemplate.tools.image;
+package com.hanjinliang.template.tools.image;
 
 /**
  * Created by HanJinLiang on 2018-04-13.

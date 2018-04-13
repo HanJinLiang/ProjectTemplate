@@ -1,4 +1,4 @@
-package com.hanjinliang.projecttemplate;
+package com.hanjinliang.template;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
