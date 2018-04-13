@@ -2,6 +2,7 @@ package com.hanjinliang.projecttemplate.module.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import com.hanjinliang.projecttemplate.R;
 
@@ -11,8 +12,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //fdfdddddf
-        //1234567890
-        //test
+        ImageView imageView=findViewById(R.id.imageView);
     }
 }
