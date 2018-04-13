@@ -13,17 +13,17 @@ import java.io.File;
  * 图片加载参数  为适配个框架参数设置不统一
  */
 public class LoaderOptions {
-    private int placeholderResId;//占位符id
-    private int errorResId;//图片加载失败id
-    private boolean isCenterCrop;
-    private boolean isCenterInside;
-    private boolean skipLocalCache;//是否缓存到本地
-    private boolean skipNetCache;
+    public int placeholderResId;//占位符id
+    public int errorResId;//图片加载失败id
+    public boolean isCenterCrop;
+    public boolean isCenterInside;
+    public boolean skipLocalCache;//是否缓存到本地
+    public boolean skipNetCache;
     public Bitmap.Config config = Bitmap.Config.RGB_565;
 
     public int targetWidth;
     public int targetHeight;
-    public float bitmapAngle; //圆角角度
+    public int bitmapAngle; //圆角角度
     public float degrees; //旋转角度.注意:picasso针对三星等本地图片，默认旋转回0度，即正常位置。此时不需要自己rotate
     public Drawable placeholder;
     public View targetView;//targetView展示图片
@@ -57,6 +57,11 @@ public class LoaderOptions {
     public void bitmap(BitmapCallBack callBack) {
         this.callBack = callBack;
         MyImageLoader.getInstance().loadOptions(this);
+    }
+
+    public LoaderOptions setCallBack(BitmapCallBack callBack) {
+        this.callBack = callBack;
+        return this;
     }
 
     public LoaderOptions placeholder(@DrawableRes int placeholderResId) {
@@ -100,7 +105,7 @@ public class LoaderOptions {
      * @param bitmapAngle   度数
      * @return
      */
-    public LoaderOptions angle(float bitmapAngle) {
+    public LoaderOptions angle(int bitmapAngle) {
         this.bitmapAngle = bitmapAngle;
         return this;
     }

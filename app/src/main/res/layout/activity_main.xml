@@ -10,5 +10,7 @@
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:id="@+id/imageView"/>
+        android:id="@+id/imageView"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_launcher_background"/>
 </android.support.constraint.ConstraintLayout>
