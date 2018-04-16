@@ -17,6 +17,7 @@ import com.blankj.utilcode.util.ImageUtils;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -64,7 +65,11 @@ public class GlideLoader implements ILoaderStrategy {
             glideRequest.fitCenter();
         }
         if(options.skipLocalCache){
-            glideRequest.skipMemoryCache(options.skipLocalCache);
+            glideRequest.diskCacheStrategy(DiskCacheStrategy.NONE);//不使用磁盘缓存
+        }
+
+        if(options.skipMemoryCache){
+            glideRequest.skipMemoryCache(options.skipLocalCache);//不使用磁盘缓存
         }
 
         if(options.targetWidth!=0&&options.targetHeight!=0){

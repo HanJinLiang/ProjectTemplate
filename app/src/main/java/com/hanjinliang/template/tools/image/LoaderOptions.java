@@ -18,7 +18,7 @@ public class LoaderOptions {
     public boolean isCenterCrop;
     public boolean isCenterInside;
     public boolean skipLocalCache;//是否缓存到本地
-    public boolean skipNetCache;
+    public boolean skipMemoryCache;
     public Bitmap.Config config = Bitmap.Config.RGB_565;
 
     public int targetWidth;
@@ -115,8 +115,8 @@ public class LoaderOptions {
         return this;
     }
 
-    public LoaderOptions skipNetCache(boolean skipNetCache) {
-        this.skipNetCache = skipNetCache;
+    public LoaderOptions skipMemoryCache(boolean skipMemoryCache) {
+        this.skipMemoryCache = skipMemoryCache;
         return this;
     }
 
