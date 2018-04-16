@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+<data>
+    <variable
+        name="act_main"
+        type="String"/>
+</data>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,13 +15,15 @@
     tools:context="com.hanjinliang.template.module.main.MainActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:id="@+id/imageView"
         android:layout_margin="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_launcher_background"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:layout_width="100dp"
@@ -23,3 +32,4 @@
         android:id="@+id/retrofitTest"
         />
 </android.support.constraint.ConstraintLayout>
+</layout>
