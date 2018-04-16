@@ -4,9 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProjectTemplate.iml" filepath="$PROJECT_DIR$/ProjectTemplate.iml" />
       <module fileurl="file://D:\GithubProject\ProjectTemplate\.idea\ProjectTemplate.iml" filepath="D:\GithubProject\ProjectTemplate\.idea\ProjectTemplate.iml" />
-      <module fileurl="file://D:\model\ProjectTemplate\ProjectTemplate.iml" filepath="D:\model\ProjectTemplate\ProjectTemplate.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\model\ProjectTemplate\app\app.iml" filepath="D:\model\ProjectTemplate\app\app.iml" />
     </modules>
   </component>
 </project>

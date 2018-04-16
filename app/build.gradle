@@ -2,19 +2,26 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.hanjinliang.projecttemplate"
+        applicationId "com.hanjinliang.template"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -29,4 +36,8 @@ dependencies {
     implementation 'com.blankj:utilcode:1.7.1'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+
+    compile 'com.jakewharton:butterknife:8.4.0'//状态栏设置
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'//注解
+    compile 'org.greenrobot:eventbus:3.0.0'//消息总线处理
 }
