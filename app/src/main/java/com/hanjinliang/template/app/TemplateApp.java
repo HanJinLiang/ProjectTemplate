@@ -2,6 +2,7 @@ package com.hanjinliang.template.app;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.hanjinliang.template.tools.image.GlideLoader;
 import com.hanjinliang.template.tools.image.MyImageLoader;
 
@@ -23,5 +24,7 @@ public class TemplateApp extends Application {
         sInstance=this;
         //设置图片加载为Glide
         MyImageLoader.getInstance().setImageLoader(new GlideLoader());
+
+        Utils.init(this);
     }
 }

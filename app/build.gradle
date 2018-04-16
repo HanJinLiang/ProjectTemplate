@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.hanjinliang.template"
         minSdkVersion 15
@@ -32,15 +31,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:27+'
-    compile 'com.android.support:appcompat-v7:27+'
+    implementation 'com.android.support:support-v4:27+'
+    implementation 'com.android.support:appcompat-v7:27+'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     implementation 'com.blankj:utilcode:1.7.1'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
-    compile 'com.jakewharton:butterknife:8.4.0'//状态栏设置
+    implementation 'com.jakewharton:butterknife:8.4.0'//状态栏设置
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'//注解
-    compile 'org.greenrobot:eventbus:3.0.0'//消息总线处理
+    implementation 'org.greenrobot:eventbus:3.0.0'//消息总线处理
+
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.alibaba:fastjson:1.2.11'
 }

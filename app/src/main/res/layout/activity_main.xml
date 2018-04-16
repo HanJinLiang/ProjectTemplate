@@ -15,4 +15,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_launcher_background"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="请求接口"
+        android:id="@+id/retrofitTest"
+        />
 </android.support.constraint.ConstraintLayout>
