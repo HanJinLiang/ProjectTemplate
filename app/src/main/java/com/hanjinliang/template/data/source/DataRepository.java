@@ -50,4 +50,5 @@ public class DataRepository {
     public void getTest(Callback<String> cb) {
         service.test().enqueue(cb);
     }
+
 }
